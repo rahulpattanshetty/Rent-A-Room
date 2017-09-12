@@ -1,8 +1,14 @@
 <h2>Cities</h2>
 
 
+
+
 <ol>
 	<%@cities.each do |city|%>
 		<li><%= link_to city.name,city_path(city.id)%></li>
 	<%end%>
 </ol>
+
+<%if can? :create, City.new%>
+<%=link_to "Add City",new_city_path%>
+<%end%>

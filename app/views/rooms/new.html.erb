@@ -20,6 +20,10 @@
 	<%=f.label :image_url%><br>
 	<%=f.text_field :images%><br>
 
+	<%=f.label :city%><br>
+	<%=f.collection_select :city_id,City.all,:id,:name%><br>
+
+
 	<%=f.submit "Add room" %><br>
 	
 

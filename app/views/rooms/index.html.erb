@@ -6,3 +6,6 @@
 	<li><%=link_to room.name,room_path(room.id)%></li>
 <%end%>
 </ol>
+<%if can? :create,Room.new%>
+<%=link_to "Add room",new_room_path%>
+<%end%>

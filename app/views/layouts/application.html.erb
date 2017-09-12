@@ -9,6 +9,7 @@
 <body>
 
 <%if user_signed_in?%>
+	<%=current_user.username%> |
 	<%=link_to "logout",destroy_user_session_path, method: :delete%> |
 	<%=link_to "Cities",cities_path%> |
 	<%=link_to "Rooms",rooms_path%>

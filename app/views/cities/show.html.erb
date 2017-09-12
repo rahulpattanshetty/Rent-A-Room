@@ -1,5 +1,30 @@
 <h4>
 City:<%=@city.name%>
 </h4>
+<%if can? :update,@city%>
 <%=link_to "edit",edit_city_path(@city.id)%>
 <%=link_to "delete",city_path(@city.id),method: :delete,data:{confirm:"Are you sure"}%>
+<%end%>
+
+<table border="1">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Rules</th>
+			<th>Price</th>
+			<th>Address</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%@city.rooms.each do |room|%>
+		<tr>
+			<th><%= link_to room.name,room_path(room.id)%></th>
+			<th><%=room.description%></th>
+			<th><%=room.rules%></th>
+			<th><%=room.price%></th>
+			<th><%=room.address%></th>
+		</tr>
+		<%end%>
+	</tbody>
+</table>

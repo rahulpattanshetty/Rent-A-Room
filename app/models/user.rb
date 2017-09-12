@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   
 	belongs_to :role
+  has_many :rooms
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -10,24 +11,14 @@ class User < ActiveRecord::Base
 
    before_create :assign_default_role
 
-
+   def role?(role)
+     self.role.name == role
+   end
 
    def assign_default_role
    		self.role_id = Role.last.id 
    	
    end
 
-   def initialize(user)
-      if user.role?"admin"
-        can :manage, [City,Room,Amenity]
-      elsif user.role?"host"
-        can :read, [City,Room]
-        can :create, Room
-        can [:update,:destroy], Room do |room|
-          room.user_id == user.id
-        end
-      elsif user.role?"guest"
-        can :read, [City,Room]
-      end
-    end
+
 end

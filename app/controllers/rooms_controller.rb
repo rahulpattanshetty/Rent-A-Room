@@ -2,6 +2,7 @@ class RoomsController < ApplicationController
   before_action :authenticate_user!, except:[:index,:show]
   load_and_authorize_resource
   before_action :set_room, only:[:show,:edit,:update,:destroy]
+  
 
 
   def index
@@ -12,11 +13,13 @@ class RoomsController < ApplicationController
   end
   def create
   	@room = Room.new(room_params)
+    @room.user_id = current_user.id
   	if @room.save
   		redirect_to rooms_path, notice:"Successfully added"
   	else
   		render action:'new'
-  	end
+  	
+    end
   end
   def show
   	
@@ -25,6 +28,7 @@ class RoomsController < ApplicationController
   	
   end
   def update
+    @room.user_id = current_user.id
   	if @room.update_attributes(room_params)
   		redirect_to rooms_path, notice:"Successfully updated"
     else

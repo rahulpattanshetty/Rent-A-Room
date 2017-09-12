@@ -5,13 +5,19 @@ Rules:<%=@room.rules%><br>
 Price:<%=@room.price%><br>
 Address:<%=@room.address%><br>
 
-<br>
-Amenities<br>
-<%=form_for @room do |f|%>
-<%=f.collection_check_boxes :amenity_ids,Amenity.all,:id,:name%><br>
-<%=f.submit "Add amenities"%>
-<%end%>
-<br>
 
-<%=link_to "edit",edit_room_path(@room.id)%>
-<%=link_to "delete",room_path(@room.id),method: :delete,data:{confirm:"Are you sure?"}%>
+<%if can? :create,Amenity.new%>
+	<br>Amenities<br>
+	<%=form_for @room do |f|%>
+		<%=f.collection_check_boxes :amenity_ids,Amenity.all,:id,:name%><br>
+		<%=f.submit "Add amenities"%>
+	<%end%>
+	<br>
+<%end%>
+
+<%if can? :update, @room%>
+	<%=link_to "edit",edit_room_path(@room.id)%>
+<%end%>
+<%if can? :destroy, @room%>
+	<%=link_to "delete",room_path(@room.id),method: :delete,data:{confirm:"Are you sure?"}%>
+<%end%>
