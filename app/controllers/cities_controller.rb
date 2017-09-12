@@ -1,6 +1,7 @@
 class CitiesController < ApplicationController
 
-
+before_action :authenticate_user!, except:[:index,:show]
+  load_and_authorize_resource
 
 def index
 	@cities =City.all
@@ -33,7 +34,7 @@ def update
 	if @city.update_attributes(city_params)
 		redirect_to cities_path, notice: "updated successfully"
 	else
-		render action:'new'
+		render action:'edit'
 	end	
 end
 def destroy
