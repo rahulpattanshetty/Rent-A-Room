@@ -1,0 +1,26 @@
+<h2>Add Room Details</h2>
+
+<%=form_for @room do |f|%>
+	
+	<%=f.label :name%><br>
+	<%=f.text_field :name%><br>
+
+	<%=f.label :description%><br>
+	<%=f.text_area :description%><br>
+
+	<%=f.label :price%><br>
+	<%=f.text_field :price%><br>
+
+	<%=f.label :rules%><br>
+	<%=f.text_area :rules%><br>
+
+	<%=f.label :address%><br>
+	<%=f.text_area :address%><br>
+
+	<%=f.label :image_url%><br>
+	<%=f.text_field :images%><br>
+
+	<%=f.submit "Add room" %><br>
+	
+
+<%end%>

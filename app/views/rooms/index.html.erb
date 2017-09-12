@@ -1,0 +1,8 @@
+<h3>Rooms </h3>
+
+
+<ol>
+<%@rooms.each do |room|%>
+	<li><%=link_to room.name,room_path(room.id)%></li>
+<%end%>
+</ol>

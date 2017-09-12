@@ -1,0 +1,9 @@
+<h3>Room details</h3>
+Name:<%=@room.name%><br>
+Description:<%=@room.description%><br>
+Rules:<%=@room.rules%><br>
+Price:<%=@room.price%><br>
+Address:<%=@room.address%><br>
+
+<%=link_to "edit",edit_room_path(@room.id)%>
+<%=link_to "delete",room_path(@room.id),method: :delete,data:{confirm:"Are you sure?"}%>

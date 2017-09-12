@@ -1,0 +1,10 @@
+<h2>Edit city</h2>
+
+<%=form_for @city do |f|%>
+	
+	<%=f.label :name%><br>
+	<%=f.text_field :name, autofocus: true%><br>
+
+	<%=f.submit "Add city"%>
+
+<%end%>

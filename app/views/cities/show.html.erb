@@ -1,0 +1,5 @@
+<h4>
+City:<%=@city.name%>
+</h4>
+<%=link_to "edit",edit_city_path(@city.id)%>
+<%=link_to "delete",city_path(@city.id),method: :delete,data:{confirm:"Are you sure"}%>
