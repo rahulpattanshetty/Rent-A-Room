@@ -4,8 +4,16 @@ Description:<%=@room.description%><br>
 Rules:<%=@room.rules%><br>
 Price:<%=@room.price%><br>
 Address:<%=@room.address%><br>
-
-
+Images:<%= image_tag(@room.images.url) %><br>
+Amenities:
+<% if @room.amenities.empty?%>
+	<h4>No Amenity Provided</h4>
+<%else%>
+	<%@room.amenities.each do |amenity|%>
+		<%=amenity.name%>- <%=amenity.description%><br>
+	<%end%>
+<%end%>
+<br>
 <%if can? :create,Amenity.new%>
 	<br>Amenities<br>
 	<%=form_for @room do |f|%>
@@ -14,7 +22,7 @@ Address:<%=@room.address%><br>
 	<%end%>
 	<br>
 <%end%>
-
+<br>
 <%if can? :update, @room%>
 	<%=link_to "edit",edit_room_path(@room.id)%>
 <%end%>

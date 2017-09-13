@@ -2,6 +2,14 @@
 
 <%=form_for @city do |f|%>
 	
+	<%if @city.errors.any?%>
+	<ul>
+		<%@city.errors.full_messages.each do |msg|%>
+			<li><%=msg%></li>
+		<%end%>
+	</ul>
+	<%end%>
+
 	<%=f.label :name%><br>
 	<%=f.text_field :name, autofocus: true%><br>
 

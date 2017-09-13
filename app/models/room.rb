@@ -5,6 +5,9 @@ has_many :amenity_rooms
 has_many :amenities, through: :amenity_rooms
 after_create :change_default_role
 before_save :take_lat_lon
+mount_uploader :images, AvatarUploader
+validates_presence_of :name,:description,:address,:price,:rules
+validates :description, length:{ minimum: 2, maximum: 150}
 
 def change_default_role
 	if self.user.role.name == "guest"
