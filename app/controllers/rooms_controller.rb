@@ -31,6 +31,8 @@ class RoomsController < ApplicationController
     #binding.pry
     if params[:room][:is_authorized]
       @room.update_attributes(is_authorized:true)
+      Notification.room_authorization(@room).deliver!
+
       #binding.pry
       redirect_to cities_path, notice:"Room is been authorized"
     else
