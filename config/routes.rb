@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'rooms/my_rooms'
   get 'rooms/unauthorize'
   get 'rooms/index'
 

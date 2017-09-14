@@ -54,6 +54,9 @@ class RoomsController < ApplicationController
     @rooms = Room.all
     
   end
+  def my_rooms
+    @rooms = Room.where('user_id=?',current_user.id)
+  end
 private
 	def room_params
 		params[:room].permit(:name,:description,:price,:rules,:images,:address,:latitude,:longitude,:city_id,:user_id,amenity_ids:[])
