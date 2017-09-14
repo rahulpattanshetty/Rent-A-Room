@@ -3,7 +3,9 @@
 
 <ol>
 <%@rooms.each do |room|%>
-	<li><%=link_to room.name,room_path(room.id)%></li>
+	<%if room.is_authorized != false%>
+		<li><%=link_to room.name,room_path(room.id)%></li>
+	<%end%>
 <%end%>
 </ol>
 <%if can? :create,Room.new%>

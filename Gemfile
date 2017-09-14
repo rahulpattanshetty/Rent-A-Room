@@ -9,6 +9,7 @@ gem 'devise'
 gem 'cancancan'
 gem 'httparty'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
+gem 'pry'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

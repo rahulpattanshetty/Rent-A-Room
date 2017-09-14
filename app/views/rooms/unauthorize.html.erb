@@ -1,0 +1,28 @@
+
+
+<table border="1">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Price</th>
+			<th>Address</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%@rooms.each do |room|%>
+			<%if (room.is_authorized == false) && (current_user.role.name == "admin")%>
+			<tr>
+					<th><%= link_to room.name,room_path(room.id)%></th>
+					<th><%=room.price%></th>
+					<th><%=room.address%></th>
+					<th><%= form_for room do |f|%>
+						<%=f.hidden_field :is_authorized,value: true%>
+						<%=f.submit "authorize"%>
+						<%end%>
+					</th>
+				</tr>
+			<%end%>
+		<%end%>	
+	</tbody>
+</table>

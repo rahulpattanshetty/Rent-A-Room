@@ -6,6 +6,7 @@ City:<%=@city.name%>
 <%=link_to "delete",city_path(@city.id),method: :delete,data:{confirm:"Are you sure"}%>
 <%end%>
 
+<br><br>
 <table border="1">
 	<thead>
 		<tr>
@@ -18,13 +19,15 @@ City:<%=@city.name%>
 	</thead>
 	<tbody>
 		<%@city.rooms.each do |room|%>
-		<tr>
-			<th><%= link_to room.name,room_path(room.id)%></th>
-			<th><%=room.description%></th>
-			<th><%=room.rules%></th>
-			<th><%=room.price%></th>
-			<th><%=room.address%></th>
-		</tr>
+			<%if room.is_authorized != false%>
+				<tr>
+					<th><%= link_to room.name,room_path(room.id)%></th>
+					<th><%=room.description%></th>
+					<th><%=room.rules%></th>
+					<th><%=room.price%></th>
+					<th><%=room.address%></th>
+				</tr>
+			<%end%>
 		<%end%>
 	</tbody>
 </table>
