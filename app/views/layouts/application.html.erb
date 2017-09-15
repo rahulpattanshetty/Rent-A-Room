@@ -29,7 +29,7 @@
 	<%=link_to "logout",destroy_user_session_path, method: :delete%> |
 	<%=link_to "Cities",cities_path%> |
 	<%=link_to "Rooms",rooms_path%> |
-	<%=link_to "Dashboard",rooms_path%> 
+	<%=link_to "Dashboard",rooms_dashboard_path%> 
 
 <%else%>
 	<%=link_to "login",new_user_session_path%>

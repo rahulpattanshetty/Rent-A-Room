@@ -15,6 +15,7 @@ class Ability
       elsif user.role?"guest"
         can :read, [City,Room]
         can :create, Room
+        can :dashboard, [Room]
 
           
       end
