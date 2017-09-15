@@ -10,6 +10,8 @@ def create
 	if @booking.check_start_end_date
 		if @booking.errors[:base].empty?
 			@booking.save
+			Notification.waiting_confirmation(@booking).deliver!
+			Notification.host(@booking).deliver!
 			redirect_to room_path(@booking.room_id), notice:"Wait for confirmation"
 		#binding.pry
 		else
@@ -22,6 +24,7 @@ def update
 	#binding.pry
 	if params[:booking][:is_confirmed]
 	@booking.update_attributes(is_confirmed: true)
+	Notification.confirmed_booking(@booking).deliver!
 	#binding.pry
 	redirect_to rooms_path, notice:"Confirmed"
 	end

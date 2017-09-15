@@ -14,10 +14,12 @@ end
 
 def create
 	@city = City.new(city_params)
-	if @city.save
+	@name = City.find_by(name:@city.name)
+	if @name.nil?
+		@city.save
 		redirect_to cities_path, notice: "Successfully added"
 	else
-		render action:'new'
+		render action:'new', notice:"City already exists"
 	end
 	
 end

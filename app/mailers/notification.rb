@@ -10,4 +10,20 @@ class Notification < ApplicationMailer
 
     mail to: "#{@room.user.email}", subject:"Room authorized"
   end
+  def waiting_confirmation(booking)
+  	@booking = booking
+
+  	mail to:"#{@booking.user.email}", subject:"Waiting for confirmation"
+  	
+  end
+  def confirmed_booking(booking)
+  	@booking = booking
+
+  	mail to:"#{@booking.user.email}", subject:"Waiting for confirmation"
+  end
+  def host(booking)
+  	@booking = booking
+
+  	mail to:"#{@booking.room.user.email}", subject:"Waiting for confirmation"
+  end
 end
