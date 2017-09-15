@@ -14,6 +14,20 @@ Amenities:
 	<%end%>
 <%end%>
 <br>
+<%=form_for @booking do |f|%>
+
+	<%=f.label :start_date%>
+	<%=f.date_select :start_date%><br>
+	<%=f.label :end_date%>
+	<%=f.date_select :end_date%><br>
+	<%=f.hidden_field :user_id, value:current_user.id%>
+	<%=f.hidden_field :room_id, value:@room.id%>
+
+	<%=f.submit "Book"%>
+	
+
+	
+<%end%>
 <%if can? :create,Amenity.new%>
 	<br>Amenities<br>
 	<%=form_for @room do |f|%>

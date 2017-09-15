@@ -1,0 +1,18 @@
+<h3>Booking History</h3>
+<table>
+	<thead>
+		<tr>
+			<th>Room</th>
+			<th>Start Date</th>
+			<th>End Date</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%@bookings.each do |booking|%>
+			<tr>
+				<th><%=booking.room.name%></th>
+				<th><%=booking.start_date%></th>
+				<th><%=booking.end_date%></th>
+			</tr>
+	</tbody>
+</table>

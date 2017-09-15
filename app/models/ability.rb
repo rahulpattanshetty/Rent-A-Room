@@ -11,6 +11,7 @@ class Ability
           room.user_id == user.id
         end
         can :my_rooms, Room
+        can :bookings, Room
       elsif user.role?"guest"
         can :read, [City,Room]
         can :create, Room

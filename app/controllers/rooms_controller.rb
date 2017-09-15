@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
   load_and_authorize_resource
   before_action :set_room, only:[:show,:edit,:update,:destroy]
   
-
+  
 
   def index
   	@rooms = Room.all
@@ -22,7 +22,7 @@ class RoomsController < ApplicationController
     end
   end
   def show
-  	
+  	@booking = Booking.new
   end
   def edit
   	
@@ -57,6 +57,19 @@ class RoomsController < ApplicationController
   def my_rooms
     @rooms = Room.where('user_id=?',current_user.id)
   end
+
+  def bookings
+    @rooms = Room.where('user_id=?',current_user.id)
+    @bookings = Booking.all
+    @booking = Booking.new
+     @rooms_a =Room.all
+  end
+
+  def dashboard
+    @bookings = Booking.where('user_id = ?', current_user.id)
+  end
+    
+ 
 private
 	def room_params
 		params[:room].permit(:name,:description,:price,:rules,:images,:address,:latitude,:longitude,:city_id,:user_id,amenity_ids:[])

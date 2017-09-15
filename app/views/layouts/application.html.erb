@@ -14,14 +14,22 @@
 	<%=link_to "Cities",cities_path%> |
 	<%=link_to "Rooms",rooms_path%> |
 	<%=link_to "Add Amenities",new_amenity_path%> |
-	<%=link_to "Rooms Authorization",rooms_unauthorize_path%>
-<%elsif user_signed_in? %>
+	<%=link_to "Rooms Authorization",rooms_unauthorize_path%> |
+	<%=link_to "Bookings",rooms_bookings_path%>
+<%elsif user_signed_in? && current_user.role_id == 2%>
 	<%=current_user.username%> |
 	<%=link_to "logout",destroy_user_session_path, method: :delete%> |
 	<%=link_to "Cities",cities_path%> |
 	<%=link_to "Rooms",rooms_path%> |
-	<%=link_to "My Rooms",rooms_my_rooms_path%>
+	<%=link_to "My Rooms",rooms_my_rooms_path%> |
+	<%=link_to "Bookings",rooms_bookings_path%>
 	
+<%elsif user_signed_in? && current_user.role_id == 3%>
+	<%=current_user.username%> |
+	<%=link_to "logout",destroy_user_session_path, method: :delete%> |
+	<%=link_to "Cities",cities_path%> |
+	<%=link_to "Rooms",rooms_path%> |
+	<%=link_to "Dashboard",rooms_path%> 
 
 <%else%>
 	<%=link_to "login",new_user_session_path%>

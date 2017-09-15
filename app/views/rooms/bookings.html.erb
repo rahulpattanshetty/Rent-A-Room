@@ -1,0 +1,80 @@
+
+
+
+<%if current_user.id == 1%>
+<h2>listing of bookings</h2>
+<br>
+<table border="1">
+	<thead>
+		<tr>
+			<th>S.No.</th>
+			<th>Hotel Name</th>
+			<th>User</th>
+			<th>Start Date</th>
+			<th>End Date</th>
+			<th>Mobile</th>
+			<th>email</th>
+			<th>price</th>
+			<th>no. of days</th>
+			<th>total price</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%count = 0%>
+	<%@bookings.each do |booking|%>
+		<tr><td><%=count += 1%></td>
+		<td><%=booking.room.name%></td>
+		<td><%=booking.user.first_name%></td>
+		<td><%=booking.start_date.strftime('%A,%B %d,%Y')%>
+			
+		</td>
+			<td><%=booking.end_date.strftime('%A,%B %d,%Y')%></td>
+			<td><%=booking.user.mobile%></td>
+			<td><%=booking.user.email%></td>
+			<td><%=booking.room.price%></td>
+			<td><%b=(booking.start_date..booking.end_date).to_a%>
+				<%=b.length%>
+			</td>
+			<td><%=b.length  * booking.room.price%></td>
+		</tr>
+	<%end%>
+	
+
+</tbody>
+</table>
+
+<%else%>
+<h2>Waiting for Confirmation</h2>
+<br>
+<table border="1">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>User Name</th>
+			<th>Start Date</th>
+			<th>End Date</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%@rooms.each do |room|%>
+	<%@bookings.each do |booking|%>
+	<%if (booking.room_id == room.id) && (booking.is_confirmed == false)%>
+		<tr><td><%=room.name%></td>
+			<td><%=booking.user.first_name%></td>
+			<td><%=booking.start_date%></td>
+			<td><%=booking.end_date%></td>
+			<td><%=form_for booking do |f|%>
+				<%=f.hidden_field :is_confirmed, value: true %>
+				<%=f.submit "Confirm"%>
+				<%end%>
+			</td>
+		</tr>
+		<%end%>
+<%end%>
+<%end%>
+	</tbody>
+
+</table>
+
+<%end%>
