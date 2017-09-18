@@ -1,7 +1,7 @@
 class Room < ActiveRecord::Base
 belongs_to :city
 belongs_to :user
-has_many :bookings
+has_many :bookings, dependent: :destroy
 has_many :amenity_rooms
 has_many :amenities, through: :amenity_rooms
 after_create :change_default_role

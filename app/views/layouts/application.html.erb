@@ -16,6 +16,7 @@
 	<%=link_to "Add Amenities",new_amenity_path%> |
 	<%=link_to "Rooms Authorization",rooms_unauthorize_path%> |
 	<%=link_to "Bookings",rooms_bookings_path%>
+	
 <%elsif user_signed_in? && current_user.role_id == 2%>
 	<%=current_user.username%> |
 	<%=link_to "logout",destroy_user_session_path, method: :delete%> |
