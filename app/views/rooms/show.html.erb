@@ -1,4 +1,6 @@
-<%=link_to "special_price",new_special_price_path%>
+<%if can? :create, @room.special_prices.build%>
+<%=link_to "special_price",new_room_special_price_path(@room.id)%>
+<%end%>
 <h3>Room details</h3>
 Name:<%=@room.name%><br>
 Description:<%=@room.description%><br>

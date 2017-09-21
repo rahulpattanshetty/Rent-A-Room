@@ -4,6 +4,7 @@ belongs_to :user
 has_many :bookings, dependent: :destroy
 has_many :amenity_rooms
 has_many :amenities, through: :amenity_rooms
+has_many :special_prices
 after_create :change_default_role
 before_save :take_lat_lon
 mount_uploader :images, AvatarUploader

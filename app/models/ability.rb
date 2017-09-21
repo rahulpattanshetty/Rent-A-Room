@@ -8,8 +8,10 @@ class Ability
         can :read, [City,Room]
         can :create, Room
         can [:update,:destroy], Room do |room|
-          room.user_id == user.id
-        end
+            room.user_id == user.id
+            
+            end
+        can :create, SpecialPrice, :room => {:user_id => user.id}
         can :my_rooms, Room
         can :bookings, Room
       elsif user.role?"guest"

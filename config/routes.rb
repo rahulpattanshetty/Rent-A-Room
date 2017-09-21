@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+   #get 'room/show/:id/special_prices/new'
   get 'rooms/dashboard'
   get 'rooms/bookings'
   get 'rooms/my_rooms'
@@ -8,10 +8,13 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :cities
-  resources :rooms
+  resources :rooms do
+
+    resources :special_prices
+  end  
   resources :amenities
   resources :bookings
-  resources :special_prices
+  
   resources :reviews
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
