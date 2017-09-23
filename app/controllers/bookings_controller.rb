@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
-
-
+load_and_authorize_resource
+before_action :set_params, only: [:show,:edit,:destroy]
 
 def create
 	@booking = Booking.new(booking_params)
@@ -27,10 +27,18 @@ def update
 	redirect_to rooms_path, notice:"Confirmed"
 	end
 end
+def destroy
+	@booking.destroy
+	redirect_to rooms_path, notice:"Booking cancelled successfully"
+	
+end
 
 private
 def booking_params
 	params[:booking].permit(:start_date,:end_date,:user_id,:room_id,:price)
+end
+def set_params
+	@booking = Booking.find(params[:id])
 	
 end
 end

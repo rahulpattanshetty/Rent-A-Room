@@ -5,18 +5,19 @@ class Ability
       if user.role?"admin"
         can :manage, :all
       elsif user.role?"host"
+        can :manage, Booking
         can :read, [City,Room]
-        can :create, Room
+        can :create, [Room]
         can [:update,:destroy], Room do |room|
             room.user_id == user.id
-            
             end
+
         can :create, SpecialPrice, :room => {:user_id => user.id}
-        can :my_rooms, Room
-        can :bookings, Room
+        can [:my_rooms,:bookings,:dashboard], Room
+        
       elsif user.role?"guest"
         can :read, [City,Room]
-        can :create, Room
+        can :create, [Room,Booking]
         can :dashboard, [Room]
 
           

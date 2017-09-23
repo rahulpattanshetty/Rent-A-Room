@@ -6,6 +6,7 @@
 			<th>Start Date</th>
 			<th>End Date</th>
 			<th>Price</th>
+			<th>Status</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -15,6 +16,12 @@
 				<th><%=booking.start_date%></th>
 				<th><%=booking.end_date%></th>
 				<th><%=booking.price%></th>
+				<th><%if booking.is_confirmed? %>
+						confirmed
+					<%else%>
+						Waiting(<%=link_to "cancel",booking_path(booking.id), method: :delete, data:{confirm:"Are you sure?"}%>)
+					<%end%>
+				</th>
 			</tr>
 			<%end%>
 	</tbody>

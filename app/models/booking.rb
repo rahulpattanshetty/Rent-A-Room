@@ -40,7 +40,6 @@ def check_discount
 					count +=1 
 				end
 			end
-
 		end
 	end
 		len -= count
