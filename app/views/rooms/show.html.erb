@@ -40,6 +40,31 @@ Amenities:
 	<br>
 <%end%>
 <br>
+<%if Review.check_user_stay_with_room(@room.id,current_user.id)%>
+<%=form_for @review do |f| %>
+	<%=f.label :review%>
+	<%=f.text_field :review%>
+
+	<br>
+	<%=f.label :food_rating%>
+	<%=f.select :food_rating,(1..5).to_a%>
+
+	<%=f.label :cleanliness_rating%>
+	<%=f.select :cleanliness_rating,(1..5).to_a%>
+
+	<%=f.label :safety_rating%>
+	<%=f.select :safety_rating,(1..5).to_a%>
+
+	<%=f.label :locality_rating%>
+	<%=f.select :locality_rating,(1..5).to_a%>
+
+	<%=f.label :facility_rating%>
+	<%=f.select :facility_rating,(1..5).to_a%><br>
+
+	<%=f.submit "Add Review"%>
+<%end%>
+<%end%>
+<br>
 <%if can? :update, @room%>
 	<%=link_to "edit",edit_room_path(@room.id)%>
 <%end%>
